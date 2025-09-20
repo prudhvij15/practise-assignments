@@ -1,0 +1,94 @@
+<!-- Task 1 -->
+
+<!-- ⁠Have a paragraph & a toggle button, on click of the button control the visibility(Show/Hide) of the paragraph -->
+
+<div [class]="theme ? 'light-theme' : 'dark-theme'">
+  <button class="btn btn-primary" (click)="toggleTheme()">
+    {{ theme ? 'Switch to Dark' : 'Switch to Light' }}
+  </button>
+
+  <div>
+    <p>{{ visbility ? 'Paragraph is Visbile' : '' }}</p>
+
+    <button (click)="toggleVisibility()">Toggle</button>
+  </div>
+
+  <hr />
+  <!-- Task 2 -->
+  <!-- Create a text-area with maxLength=100, as the user keeps typing display updated Remaining characters. -->
+  <div>
+    <textarea
+      [(ngModel)]="textValue"
+      rows="5"
+      cols="30"
+      placeholder="Type something..."
+      maxlength="{{ maxLength }}"
+    ></textarea>
+    <p>Character count: {{ maxLength - textValue.length }}</p>
+  </div>
+
+  <hr />
+  <!-- Task3 -->
+  <!-- Create dropdown with state names, when user changes dropdown value, print the selected dropdown value in a div -->
+  <div class="flex flex-col gap-2">
+    <label for="myDropdown">Choose an option:</label>
+    <select id="myDropdown" name="myDropdownName" [(ngModel)]="selectedValue">
+      <option value="option1">Kansas</option>
+      <option value="option2">Texas</option>
+      <option value="option3">Chicago</option>
+    </select>
+    <div>{{ selectedValue }}</div>
+  </div>
+
+  <hr />
+  <!-- Task 4 -->
+  <!-- .⁠ ⁠have 2 inputBoxes, and a dropdown(+,-,*,/) and perform arithmetic operations -->
+
+  <div>
+    <input type="number" [(ngModel)]="num1" class="m-2" />
+    <input type="number" [(ngModel)]="num2" class="m-2" />
+    <label for="myDropdown">Choose an option:</label>
+    <select id="myDropdown" name="myDropdownName" [(ngModel)]="operator">
+      <option value="+">Addition</option>
+      <option value="-">Subtraction</option>
+      <option value="*">Multiplication</option>
+      <option value="/">Division</option>
+      <option value="%">Modulos</option>
+    </select>
+
+    <button (click)="arithemeticOperations()">Perform Operation</button>
+    <p>{{ result }}</p>
+  </div>
+  <hr />
+
+  <!-- Task 5 -->
+
+  <!-- 5. create a input box, toggle the type of that input box to (text/password) -->
+  <div>
+    <input type="{{ showPassword ? 'text' : 'password' }}" class="m-2" />
+    <button (click)="showPass()" class="ml-2">
+      {{ showPassword ? 'Hide Password' : 'Show Password' }}
+    </button>
+  </div>
+
+  <!-- Task 6
+⁠create a counter example with 3 -->
+  <hr />
+  <div>
+    <p>{{ counter }}</p>
+    <button on-click="increment()">Increment</button>
+    <button on-click="decrement()">Decrement</button>
+    <button on-click="reset()">Reset</button>
+  </div>
+  <hr />
+
+  <!-- Task 7
+Have a toggle button and control Dark/Light theme of a page. -->
+  <hr />
+  <!-- Task 8 -->
+
+  <div>
+    <input type="number" [(ngModel)]="celsius" placeholder="Enter celsius " />
+    <p>Fahrenheit : {{ celsius ? (celsius * 9) / 5 + 32 : '' }}</p>
+  </div>
+</div>
