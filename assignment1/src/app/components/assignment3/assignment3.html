@@ -1,0 +1,35 @@
+<h3> Products</h3>
+
+
+<div class="container">
+  <input type="text" [(ngModel)]="searchText" (ngModelChange)="searchProduct()"/>
+
+
+<div class="btn btn-primary" (click)="sortProducts()">{{sortAscending ? "Low - High " :"High - Low"}}</div>
+</div>
+
+<div class="container">
+
+ <div class="row">
+  <!-- @for (product of productsList; track $index) { -->
+    @for (product of filteredProducts; track $index) {
+     <div class="col-sm-3">
+    <div class="card">
+  <img class="card-img-top" src="{{product.image}}" alt="Card image cap" height="250">
+  <div class="card-body text-center">
+    <h5 class="card-title text-truncate">{{product.category}}</h5>
+    <p class="card-text text-truncate">{{product.title}}</p>
+    <p class="card-text text-truncate">{{product.description}}</p>
+     <p class="card-text">{{product.price}}</p>
+       <p class="card-text">
+            {{product.rating.rate}}
+
+          </p>
+          <div class="btn btn-primary">Details</div>
+  </div>
+</div>
+</div>
+  }
+  </div>
+</div>
+

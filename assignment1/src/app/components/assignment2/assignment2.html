@@ -1,0 +1,87 @@
+<div>
+  <div class="border border-3 rounded-3 p-3 m-3">
+    <button (click)="showCards()">{{ showCardView ? 'View as Table' : 'View as Cards' }}</button>
+    @if (!showCardView) {
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>id</th>
+            <th>Name</th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (user of usersList; track $index) {
+            <tr>
+              <td>{{ user.id }}</td>
+              <td>{{ user.name }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>
+                {{ user.address.city }}, {{ user.address.street }}, {{ user.address.zipcode }}
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+    @if (showCardView) {
+      <div class="d-flex justify-content-start flex-row align-content-stretch flex-wrap">
+        @for (user of usersList; track $index) {
+          <div class="card m-2" style="width: 17rem">
+            <div class="card-body">
+              <h5 class="card-title">{{ user.name }}</h5>
+              <p class="card-text">{{ user.username }}</p>
+              <p class="card-text">{{ user.email }}</p>
+              <p class="card-text">{{ user.address.city }},{{ user.address.street }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="border border-3 rounded-3 p-3 m-3">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th>Salary</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (emp of employees; track $index) {
+          <tr>
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.name }}</td>
+            <!-- c. Add bold font and blue color only for employees whose role is "Manager" using [ngClass] -->
+            <td
+              [ngClass]="[
+                emp.role === 'Manager' ? 'manager-highlight' : '',
+                emp.role === 'Developer' ? 'Developer' : '',
+                emp.role === 'Tester' ? 'tester' : '',
+              ]"
+            >
+              {{ emp.role }}
+            </td>
+
+            <!-- a. Display Salary in green  if salary > 50000, else Display Salary in red, using [ngStyle] -->
+            <!-- e. Show salary in a badge style with dynamic color -->
+            <!-- Green if salary > 70,000 , Orange if between 40,000–70,000, Red if < 40,000 -->
+            <td [ngClass]="getSalaryClass(emp.salary)">{{ emp.salary }}</td>
+
+            <!-- 2B)  Apply a CSS class "inactive" to employees whose status is "Inactive" using [ngClass] -->
+            <td [ngClass]="emp.status === 'Active' ? 'active' : 'inactive'">{{ emp.status }}</td>
+            <!-- d. Apply a different row background color based on employee role:
+		Manager = lightyellow , Developer = lightblue , Tester = lightpink -->
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

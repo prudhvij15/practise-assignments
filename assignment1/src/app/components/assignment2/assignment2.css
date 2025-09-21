@@ -1,0 +1,21 @@
+.inactive{
+  color : red
+}
+
+.active {
+  color : green
+}
+
+
+.manager-highlight {
+  font-weight: bold;
+  color: blue;
+}
+
+.Developer{
+  color:lightblue
+}
+
+.tester{
+  color:LightPink
+}
