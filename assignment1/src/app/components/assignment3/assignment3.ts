@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import products from './products';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+ import {NgxPaginationModule} from 'ngx-pagination';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 @Component({
+
   selector: 'app-assignment3',
-  imports: [FormsModule],
+  imports: [FormsModule,NgxPaginationModule,FontAwesomeModule],
   templateUrl: './assignment3.html',
   styleUrl: './assignment3.css',
 })
 export class Assignment3 {
-  productsList = products;
-
+  productsList = products;p :number =1
+  faStar = faStar;
   searchText: string = '';
   filteredProducts: any[] = [...this.productsList];
   searchProduct() {
