@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Assignment2 } from "./components/assignment2/assignment2";
 import { Assignment3 } from "./components/assignment3/assignment3";
+import { EmployeeCrud } from "./components/employee-crud/employee-crud";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Assignment, Assignment2, Assignment3],
+  imports: [RouterOutlet, Assignment, Assignment2, Assignment3, EmployeeCrud],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

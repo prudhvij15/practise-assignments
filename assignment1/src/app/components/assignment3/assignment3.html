@@ -1,42 +1,41 @@
-<h3> Products</h3>
+<h3>Products</h3>
 
+<div class="align=items-center">
+  <div class="container">
+    <input type="text" [(ngModel)]="searchText" (ngModelChange)="searchProduct()" class="m-4" />
 
-<div class=" align=items-center">
-  <div class="container ">
-  <input type="text" [(ngModel)]="searchText" (ngModelChange)="searchProduct()" class="m-4"/>
-
-
-<div class="btn btn-primary" (click)="sortProducts()">{{sortAscending ? "Sort By Low-high " :"Sort By High - Low"}}</div>
-</div>
-
-<div class="container">
-
- <div class="row ">
-  <!-- @for (product of productsList; track $index) { -->
-    @for (product of filteredProducts | paginate:  { itemsPerPage: 8, currentPage: p}; track $index) {
-
-     <div class="col-sm-3 mb-4 text-center">
-    <div class="card">
-  <img class="card-img-top" src="{{product.image}}" alt="Card image cap" height="250">
-  <div class="card-body text-center">
-    <h5 class="card-title text-truncate">{{product.category}}</h5>
-    <p class="card-text text-truncate">{{product.title}}</p>
-    <p class="card-text text-truncate">{{product.description}}</p>
-     <p class="card-text">{{product.price}}</p>
-       <p class="card-text">
-            {{product.rating.rate}}
-<fa-icon [icon]="faStar" class="text-warning"></fa-icon>
-          </p>
-          <div class="btn btn-primary">Details</div>
+    <div class="btn btn-primary" (click)="sortProducts()">
+      {{ sortAscending ? 'Sort By Low-high ' : 'Sort By High - Low' }}
+    </div>
   </div>
-</div>
-</div>
-  }
-   <div class="mt-3 col-sm-4 offset-4">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+  <div class="container">
+    <div class="row">
+      <!-- @for (product of productsList; track $index) { -->
+      @for (
+        product of filteredProducts | paginate: { itemsPerPage: 8, currentPage: p };
+        track $index
+      ) {
+        <div class="col-sm-3 mb-4 text-center">
+          <div class="card">
+            <img class="card-img-top" src="{{ product.image }}" alt="Card image cap" height="250" />
+            <div class="card-body text-center">
+              <h5 class="card-title text-truncate">{{ product.category }}</h5>
+              <p class="card-text text-truncate">{{ product.title }}</p>
+              <p class="card-text text-truncate">{{ product.description }}</p>
+              <p class="card-text">{{ product.price }}</p>
+              <p class="card-text">
+                {{ product.rating.rate }}
+                <fa-icon [icon]="faStar" class="text-warning"></fa-icon>
+              </p>
+              <div class="btn btn-primary">Details</div>
+            </div>
+          </div>
+        </div>
+      }
+      <div class="mt-3 col-sm-4 offset-4">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-

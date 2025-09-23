@@ -1,0 +1,111 @@
+<!-- Assignment
+=========
+1.⁠ ⁠create 1 EmployeeCRUD component
+2.⁠ ⁠display list of employees in a table(data comes from an array)
+3.⁠ ⁠user should be able to delete Employee (ask user confirmation)
+4.⁠ ⁠view the details of selected employee in a modal (bootstrap Modal)
+5.⁠ ⁠add a new employee to the table (insert a new record to the array)
+   use SnackBar to display message ('EmployAdded Successfully' - message should be maintained in a constant file)
+6.⁠ ⁠use font-awesome to display any icons (star , delete, edit) -->
+
+<h3>Employee Crud Component</h3>
+<div
+  class="btn btn-primary"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+  (click)="openAddModal()"
+>
+  Add Employee
+</div>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (emp of employees; track $index) {
+        <tr>
+          <td>{{ emp.id }}</td>
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.role }}</td>
+          <td>{{ emp.department }}</td>
+          <td>{{ emp.salary }}</td>
+
+          <td>
+            <button
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="viewDetails(emp, $index)"
+            >
+              View
+            </button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="deleteEmployeeById($index)">Delete</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<!-- <app-modal >
+
+  @for (emp of filteredEmployee; track $index) {
+
+      <p><b>Name:</b> {{ emp.name }}</p>
+  <p><b>Email:</b> {{ emp.email }}</p>
+
+    <p><b>Email:</b> {{ emp.role }}</p>
+    <p><b>Email:</b> {{ emp.department }}</p>
+    <p><b>Email:</b> {{emp.salary }}</p>
+  }
+
+
+</app-modal> -->
+
+<app-modal>
+  @if (isAdding) {
+    <h5>Add New Employee</h5>
+    <div class="mb-2">
+      <label>Name:</label>
+      <input type="text" [(ngModel)]="newEmployee.name" class="form-control" />
+    </div>
+    <div class="mb-2">
+      <label>Email:</label>
+      <input type="email" [(ngModel)]="newEmployee.email" class="form-control" />
+    </div>
+    <div class="mb-2">
+      <label>Role:</label>
+      <input type="text" [(ngModel)]="newEmployee.role" class="form-control" />
+    </div>
+    <div class="mb-2">
+      <label>Department:</label>
+      <input type="text" [(ngModel)]="newEmployee.department" class="form-control" />
+    </div>
+    <div class="mb-2">
+      <label>Salary:</label>
+      <input type="number" [(ngModel)]="newEmployee.salary" class="form-control" />
+    </div>
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"    data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="saveEmployee()" data-bs-dismiss="modal"> Save changes</button>
+      </div>
+  } @else {
+    @for (emp of filteredEmployee; track $index) {
+      <p><b>Name:</b> {{ emp.name }}</p>
+      <p><b>Email:</b> {{ emp.email }}</p>
+      <p><b>Role:</b> {{ emp.role }}</p>
+      <p><b>Department:</b> {{ emp.department }}</p>
+      <p><b>Salary:</b> {{ emp.salary }}</p>
+    }
+  }
+</app-modal>
