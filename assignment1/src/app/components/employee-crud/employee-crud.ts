@@ -11,23 +11,26 @@ import { FormsModule } from '@angular/forms';
 })
 export class EmployeeCrud {
   employees = employees;
-  filteredEmployee: any = [...employees];
+  filteredEmployee: any = []
   newEmployee: any = { id: '', name: '', email: '', role: '', department: '', salary: '' };
 
   isAdding: boolean = false;
   viewDetails(emp: any, index: any) {
     this.isAdding = false;
-    this.filteredEmployee = employees.filter((emp, i) => i == index);
+    this.filteredEmployee = this.employees.filter((e, i) => e.id == emp.id);
     console.log(this.filteredEmployee);
   }
   openAddModal() {
     this.isAdding = true;
     this.newEmployee = { id: '', name: '', email: '', role: '', department: '', salary: '' };
+    this.newEmployee = { id: '', name: '', email: '', role: '', department: '', salary: '' };
   }
 
   saveEmployee() {
-    this.newEmployee.id = this.employees.length + 1;
-    this.employees.push({ ...this.newEmployee });
+     const maxId = this.employees.length ? Math.max(...this.employees.map((e: any) => Number(e.id))) : 0;
+      const newId = maxId + 1;
+
+    this.employees.push({ ...this.newEmployee ,id: newId});
   }
 
   deleteEmployeeById(index: any) {
