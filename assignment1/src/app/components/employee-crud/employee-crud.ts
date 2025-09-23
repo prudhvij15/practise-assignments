@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { employees } from './employeeDetails';
 import { Modal } from '../modal/modal';
 import Swal from 'sweetalert2';
+import Snackbar from 'awesome-snackbar';
 import { FormsModule } from '@angular/forms';
+import { APP_MESSAGES } from './constants';
 @Component({
   selector: 'app-employee-crud',
   imports: [Modal, FormsModule],
@@ -31,6 +33,9 @@ export class EmployeeCrud {
       const newId = maxId + 1;
 
     this.employees.push({ ...this.newEmployee ,id: newId});
+    new Snackbar(APP_MESSAGES.EMPLOYEE_ADDED,
+      { position: 'top-center', theme: 'light', timeout: 5000, actionText: 'X' }
+    );
   }
 
   deleteEmployeeById(index: any) {
@@ -51,6 +56,9 @@ export class EmployeeCrud {
         });
         this.employees = this.employees.filter((emp, i) => i !== index);
         this.filteredEmployee = [...this.employees];
+         new Snackbar(APP_MESSAGES.EMPLOYEE_DELETED,
+      { position: 'top-center', theme: 'light', timeout: 5000, actionText: 'X' }
+    );
         console.log('delet', this.filteredEmployee);
       }
     });
