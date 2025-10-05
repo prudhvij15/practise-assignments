@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { employees } from './../assignment2/user';
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, inject } from '@angular/core';
+import { EmployeesService } from '../../services/employees-service';
+
 
 @Component({
   selector: 'app-employee-table',
@@ -21,12 +23,9 @@ export class EmployeeTable {
   this.viewEmployee.emit(data)
 
  }
- deleteEmployeeById(data:any){
-  console.log(data)
-  this.deleteEmployee.emit(data)
+ deleteEmployeeById(empId:any){
+  console.log("hiiiii",empId)
+  this.deleteEmployee.emit(empId)
  }
 
-  ngOnInit(): void {
-    console.log(this.employee);
-  }
 }

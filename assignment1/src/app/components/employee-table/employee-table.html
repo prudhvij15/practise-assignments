@@ -1,23 +1,30 @@
  <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
-      </tr>
+       <th scope="col">ID</th>
+    <th scope="col">FirstName</th>
+    <th scope="col">LastName</th>
+
+    <th scope="col">Position</th>
+    <th scope="col">Department</th>
+    <th scope="col">Salary ($)</th>
+    <th scope="col">Gender</th>
+    <th scope="col">Actions</th>
     </thead>
     <tbody>
+
       @for (emp of employee; track $index) {
         <tr>
-          <p>{{a}}</p>
+
           <td>{{ $index+1 }}</td>
-          <td>{{ emp.name }}</td>
-          <td>{{ emp.email }}</td>
-          <td>{{ emp.role }}</td>
+          <td>{{ emp.firstName }}</td>
+          <td>{{ emp.lastName }}</td>
+
+          <td>{{ emp.position }}</td>
           <td>{{ emp.department }}</td>
           <td>{{ emp.salary }}</td>
 
+<td>{{emp.gender}}</td>
           <td>
             <button
               class="btn btn-primary"
@@ -29,7 +36,7 @@
             </button>
           </td>
           <td>
-            <button class="btn btn-danger" (click)="deleteEmployeeById($index)">Delete</button>
+            <button class="btn btn-danger" (click)="deleteEmployeeById(emp.id)">Delete</button>
           </td>
         </tr>
       }

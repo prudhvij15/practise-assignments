@@ -1,0 +1,13 @@
+{
+  "employees": [
+    {
+      "id": "101",
+      "firstName": "John",
+      "lastName": "Doe",
+      "position": "Software Engineer",
+      "department": "Technology",
+      "hireDate": "2022-08-15",
+      "salary": 90000
+    }
+  ]
+}

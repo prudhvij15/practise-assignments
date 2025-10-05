@@ -18,7 +18,11 @@ isAdding : any
 filteredEmployee:any
   addEmployee = new EventEmitter();
 
+
   addEmp(){
-    this.addEmployee.emit()
+    console.log("New emp",this.newEmployee)
+    this.addEmployee.emit(this.newEmployee)
   }
+
+
 }
